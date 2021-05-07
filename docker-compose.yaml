@@ -1,0 +1,31 @@
+version: '3.4'
+volumes:
+  mysql_data:
+services:
+  mysql:
+    image: mysql:8
+    environment:
+    - MYSQL_DATABASE=onboard
+    - MYSQL_ROOT_PASSWORD=root
+    volumes:
+    - ./docker/mysql:/docker-entrypoint-initdb.d
+    - mysql_data:/var/lib/mysql
+    ports:
+    - protocol: tcp
+      target: 3306
+      published: 3306
+  php:
+    build:
+      dockerfile: ./docker/php/Dockerfile
+      context: .
+    environment:
+      APP_MYSQL_DSN: 'mysql:host=mysql;dbname=onboard'
+      APP_MYSQL_USERNAME: 'root'
+      APP_MYSQL_PASSWORD: 'root'
+    volumes:
+    - ./public:/var/www/html
+    - .:/var/www
+    ports:
+    - protocol: tcp
+      target: 80
+      published: 8888
