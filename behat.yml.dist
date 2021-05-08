@@ -1,0 +1,25 @@
+default:
+  suites:
+    user:
+      paths:
+        - features/user
+      contexts:
+        - MinkContext
+        - IntegratedExperts\BehatScreenshotExtension\Context\ScreenshotContext
+        - Behat\MinkExtension\Context\MinkContext
+      filters:
+        tags: '@user'
+  extensions:
+    IntegratedExperts\BehatScreenshotExtension:
+      dir: '%paths.base%/screenshots'
+      fail: true
+      purge: false
+    Robertfausk\Behat\PantherExtension: ~
+    Behat\MinkExtension:
+      base_url: 'http://localhost:8888/'
+      sessions:
+        default:
+          panther:
+            options:
+              browser: 'chrome'
+              webServerDir: '%paths.base%/html'

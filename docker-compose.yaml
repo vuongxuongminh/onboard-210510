@@ -19,11 +19,11 @@ services:
       dockerfile: ./docker/php/Dockerfile
       context: .
     environment:
-      APP_MYSQL_DSN: 'mysql:host=mysql;dbname=onboard'
-      APP_MYSQL_USERNAME: 'root'
-      APP_MYSQL_PASSWORD: 'root'
+    - XDEBUG_MODE=coverage
+    - APP_MYSQL_DSN=mysql:host=mysql;dbname=onboard
+    - APP_MYSQL_USERNAME=root
+    - APP_MYSQL_PASSWORD=root
     volumes:
-    - ./public:/var/www/html
     - .:/var/www
     ports:
     - protocol: tcp

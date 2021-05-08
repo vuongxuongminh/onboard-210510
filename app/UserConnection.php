@@ -15,15 +15,14 @@ final class UserConnection extends \PDO
         $this->setAttribute(self::ERRMODE_EXCEPTION, true);
     }
 
-    public function findRecordByUsername(string $username): ?array
+    public function findRecordByEmail(string $email): ?array
     {
-        $stm = $this->prepare('SELECT * FROM user WHERE username=:username');
+        $stm = $this->prepare('SELECT * FROM user WHERE email=:email');
         $stm->execute(
             [
-                ':username' => $username
+                ':email' => $email
             ]
         );
-
 
         return $stm->fetchAll(self::FETCH_ASSOC)[0] ?? null;
     }
