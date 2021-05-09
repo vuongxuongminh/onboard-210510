@@ -24,7 +24,7 @@ class LoginServiceTest extends TestCase
     public function testLoginWithWrongEmail()
     {
         $this->expectException(LoginException::class);
-        $this->expectExceptionMessage('Username not exist!');
+        $this->expectExceptionMessage('Email not exist!');
         $this->service->login('wrong_email@onboard.demo', 'Qwerty@123');
     }
 

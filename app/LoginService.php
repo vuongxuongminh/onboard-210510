@@ -14,7 +14,7 @@ final class LoginService
     public function login(string $email, string $password): void
     {
         if (!$record = $this->connection->findRecordByEmail($email)) {
-            throw new LoginException('Username not exist!');
+            throw new LoginException('Email not exist!');
         }
 
         if ($record['password'] !== $password) {

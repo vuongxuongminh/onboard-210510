@@ -28,7 +28,7 @@ final class LoginTest extends TestCase
         $_POST['email'] = 'not_exist@onboard.demo';
         $_POST['password'] = 'Qwerty@123';
         require __DIR__.'/../../html/entrypoint/login.php';
-        $this->assertSame('Username not exist!', ob_get_clean());
+        $this->assertSame('Email not exist!', ob_get_clean());
     }
 
     public function testLoginWithIncorrectPassword(): void

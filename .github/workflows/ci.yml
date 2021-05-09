@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Start docker
+        run: docker-compose up -d
+      - name: Composer install
+        run: docker-compose exec php bash -c "composer install"
+      - name: Run unit test
+        run: docker-compose exec php bash -c "make phpunit_unit"
+      - name: Run functional test
+        run: docker-compose exec php bash -c "make phpunit_functional"
+      - name: Behat
+        run: make behat

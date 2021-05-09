@@ -29,3 +29,5 @@ services:
     - protocol: tcp
       target: 80
       published: 8888
+    depends_on:
+    - mysql
