@@ -17,7 +17,7 @@ jobs:
       - name: Composer install
         run: docker-compose exec -T php bash -c "composer install --no-interaction"
       - name: Waiting db ready
-        run: docker-compose exec php bash -c 'php -r  "while (true) { try { new PDO(\$_SERVER[\"APP_MYSQL_DSN\"], \$_SERVER[\"APP_MYSQL_USERNAME\"], \$_SERVER[\"APP_MYSQL_PASSWORD\"], [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); exit(0); } catch(\PDOException) { sleep(1); } }"'
+        run: docker-compose exec -T php bash -c 'php -r  "while (true) { try { new PDO(\$_SERVER[\"APP_MYSQL_DSN\"], \$_SERVER[\"APP_MYSQL_USERNAME\"], \$_SERVER[\"APP_MYSQL_PASSWORD\"], [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); exit(0); } catch(\PDOException) { sleep(1); } }"'
       - name: Run unit test
         run: docker-compose exec -T php bash -c "make phpunit_unit"
       - name: Run functional test
