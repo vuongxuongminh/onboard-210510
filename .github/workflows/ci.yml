@@ -15,7 +15,7 @@ jobs:
       - name: Start docker
         run: docker-compose up -d
       - name: Composer install
-        run: docker-compose exec php bash -c "composer install --no-interaction"
+        run: docker-compose exec -T php bash -c "composer install --no-interaction"
       - name: Run unit test
         run: docker-compose exec php bash -c "make phpunit_unit"
       - name: Run functional test
