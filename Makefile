@@ -2,6 +2,7 @@
 behat:
 	export PANTHER_NO_HEADLESS=1; \
     export PANTHER_CHROME_ARGUMENTS=window-size=1920,800; \
+    ./vendor/bin/bdi.phar; \
 	./vendor/bin/behat
 
 phpunit_functional:
